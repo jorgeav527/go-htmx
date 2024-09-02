@@ -1,0 +1,44 @@
+package layout
+
+import "github.com/jorgeav527/vehicle-model/views/vehicleModel"
+
+
+templ Home() {
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+            <script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
+        </head>
+        <body>
+            <h1 class="">
+                Car Show Example App
+            </h1>
+            <div>
+                @vehicleModel.CreateVehicleModelForm()
+            </div>
+            <div>
+                @vehicleModel.SearchVehicleModelForm()
+            </div>
+
+            <table class="">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">Year</th>
+                        <th style="text-align: center;">Make</th>
+                        <th style="text-align: center;">Model</th>
+                        <th style="text-align: center;">Body Style</th>
+                    </tr>
+                </thead>
+                <tbody id="vehicle-list">
+                    <!-- Vehicle list will be rendered here -->
+                </tbody>
+            </table>
+            <button hx-get="/vehicle-model?page=1&limit=50" hx-target="#vehicle-list" hx-swap="innerHTML" class="">
+                See Available Cars
+            </button>
+        </body>
+    </html>
+}

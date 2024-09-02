@@ -1,0 +1,21 @@
+package vehicleModel
+
+
+import (
+
+)
+
+
+templ CreateVehicleModelForm() {
+    <form hx-post="/vehicle-model" hx-target="#vehicle-list" hx-swap="afterbegin">
+        <table>
+            <tr>
+                <td><input name="year" type="number" placeholder="Year" required></td>
+                <td><input name="make" type="text" placeholder="Make" required></td>
+                <td><input name="model" type="text" placeholder="Model" required></td>
+                <td><input name="bodyStyle" type="text" placeholder="Body Style" required></td>
+                <td><button type="submit">Add Vehicle</button></td>
+            </tr>
+        </table>
+    </form>
+}

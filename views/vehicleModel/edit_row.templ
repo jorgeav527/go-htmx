@@ -1,0 +1,31 @@
+package vehicleModel
+
+
+import (
+    "fmt"
+
+    "github.com/jorgeav527/vehicle-model/models"
+)
+
+
+templ EditableVehicleRow(vehicleModel models.VehicleModel) {
+    <tr id={vehicleModel.Id.Hex()}>
+        <td><input name='year' value={ fmt.Sprintf("%d", vehicleModel.Year) }></td>
+        <td><input name='make' value={ vehicleModel.Make }></td>
+        <td><input name='model' value={ vehicleModel.Model }></td>
+        <td><input name='bodyStyle' value={ *vehicleModel.BodyStyle }></td>
+        <td>
+            <button class="btn danger" hx-get={ "/vehicle-model/" + vehicleModel.Id.Hex() }
+                hx-target="closest tr"
+                hx-swap="outerHTML">
+                Cancel
+            </button>
+            <button class="btn success" hx-post={ "/vehicle-model/edit/" + vehicleModel.Id.Hex() } 
+                hx-include="closest tr"
+                hx-target="closest tr"
+                hx-swap="outerHTML">
+                Save
+            </button>
+        </td>
+    </tr>
+}
