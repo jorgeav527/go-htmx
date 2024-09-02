@@ -10,18 +10,18 @@ import (
 templ VehicleModelList(vehicleModels []models.VehicleModel, hasMore bool, page, limit int) {
     for _, vehicleModel := range vehicleModels {
         <tr id={ fmt.Sprintf("vehicle_model_%s", vehicleModel.Id.Hex()) }>
-            <td style="text-align: center;">{ fmt.Sprintf("%d", vehicleModel.Year) }</td>
-            <td style="text-align: center;">{ vehicleModel.Make }</td>
-            <td style="text-align: center;">{ vehicleModel.Model }</td>
-            <td style="text-align: center;">{ *vehicleModel.BodyStyle }</td>
-            <td>
-                <button class=""
+            <td class="text-center">{ fmt.Sprintf("%d", vehicleModel.Year) }</td>
+            <td class="text-center">{ vehicleModel.Make }</td>
+            <td class="text-center">{ vehicleModel.Model }</td>
+            <td class="text-center">{ *vehicleModel.BodyStyle }</td>
+            <td class="text-center">
+                <button class="btn btn-warning btn-sm me-2"
                         hx-get={ fmt.Sprintf("/vehicle-model/edit/%s", vehicleModel.Id.Hex()) }
                         hx-target="closest tr"
                         hx-swap="outerHTML">
                     Edit
                 </button>
-                <button class=""
+                <button class="btn btn-danger btn-sm"
                         hx-delete={ fmt.Sprintf("/vehicle-model/%s", vehicleModel.Id.Hex()) }
                         hx-target="closest tr"
                         hx-swap="outerHTML swap:1s">
@@ -32,8 +32,8 @@ templ VehicleModelList(vehicleModels []models.VehicleModel, hasMore bool, page, 
     }
     if hasMore {
         <tr id="replaceMe">
-            <td colspan="4" style="text-align: center;">
-                <button class="" hx-get={fmt.Sprintf("/vehicle-model?page=%d&limit=%d", page + 1, limit)} hx-target="#replaceMe" hx-swap="outerHTML">
+            <td colspan="5" class="text-center">
+                <button class="btn btn-primary mt-2" hx-get={fmt.Sprintf("/vehicle-model?page=%d&limit=%d", page + 1, limit)} hx-target="#replaceMe" hx-swap="outerHTML">
                     Load More Vehicles...
                 </button>
             </td>
